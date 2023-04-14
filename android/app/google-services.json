@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "493208221869",
+    "project_id": "firechat-f339a",
+    "storage_bucket": "firechat-f339a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493208221869:android:d16c8727d29d5476ce2e24",
+        "android_client_info": {
+          "package_name": "com.devsalih.firechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493208221869-hk1c8724i23t8hfrmi7bsa606ir97ris.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devsalih.firechat",
+            "certificate_hash": "6c2d0f7d42d56a9a8c1fcd7a1ee579009a32c19f"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVik4v5tJZzHC_ixZu3qGMt8NNk_6Zs_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493208221869-ncdi3cug57lcmpiftbfuv2abhfign3u0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.devsalih.firechat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
