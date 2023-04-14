@@ -6,21 +6,18 @@ class PhonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PhoneInputScreen(
-      actions: [
-        SMSCodeRequestedAction((context, action, flowKey, phoneNumber) {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SMSCodeInputScreen(flowKey: flowKey),
-          ));
-        }),
-        AuthStateChangeAction<SignedIn>((context, state) {
-          print('signed in');
-          Navigator.pushReplacementNamed(context, '/profile');
-        }),
-        AuthStateChangeAction<UserCreated>((context, state) {
-          Navigator.pushReplacementNamed(context, '/profile');
-        }),
-      ],
-    );
+    return PhoneInputScreen(actions: [
+      SMSCodeRequestedAction((context, action, flowKey, phoneNumber) {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SMSCodeInputScreen(flowKey: flowKey),
+        ));
+      }),
+      AuthStateChangeAction<SignedIn>((context, state) {
+        Navigator.pushReplacementNamed(context, '/profile');
+      }),
+      AuthStateChangeAction<UserCreated>((context, state) {
+        Navigator.pushReplacementNamed(context, '/profile');
+      }),
+    ]);
   }
 }

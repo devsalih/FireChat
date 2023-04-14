@@ -1,4 +1,5 @@
 import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
+import 'package:firebase_ui_oauth_facebook/firebase_ui_oauth_facebook.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
@@ -21,6 +22,7 @@ void main() async {
     PhoneAuthProvider(),
     AppleProvider(),
     GoogleProvider(clientId: dotenv.env['GOOGLE_CLIENT_ID']!),
+    FacebookProvider(clientId: dotenv.env['FACEBOOK_CLIENT_ID']!),
   ]);
   runApp(const MyApp());
 }
