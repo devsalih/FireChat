@@ -1,8 +1,10 @@
 import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/material.dart';
 
 import 'email_verification_page.dart';
 import 'firebase_options.dart';
@@ -12,11 +14,13 @@ import 'profile_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     PhoneAuthProvider(),
     AppleProvider(),
+    GoogleProvider(clientId: dotenv.env['GOOGLE_CLIENT_ID']!),
   ]);
   runApp(const MyApp());
 }
