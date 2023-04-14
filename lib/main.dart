@@ -6,12 +6,16 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'email_verification_page.dart';
 import 'firebase_options.dart';
 import 'login_page.dart';
+import 'phone_page.dart';
 import 'profile_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseUIAuth.configureProviders([EmailAuthProvider()]);
+  FirebaseUIAuth.configureProviders([
+    EmailAuthProvider(),
+    PhoneAuthProvider(),
+  ]);
   runApp(const MyApp());
 }
 
@@ -27,11 +31,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: currentUser == null
           ? '/login'
-          : (currentUser.emailVerified ? '/profile' : '/verify'),
+          : currentUser.emailVerified || currentUser.phoneNumber != null
+              ? '/profile'
+              : '/verify',
       routes: {
         '/login': (context) => const LoginPage(),
         '/profile': (context) => const ProfilePage(),
         '/verify': (context) => const EmailVerificationPage(),
+        '/phone': (context) => const PhonePage(),
       },
     );
   }

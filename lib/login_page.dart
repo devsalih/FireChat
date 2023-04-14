@@ -8,6 +8,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SignInScreen(actions: [
+      VerifyPhoneAction((context, _) {
+        Navigator.pushNamed(context, '/phone');
+      }),
       AuthStateChangeAction<SignedIn>((context, state) {
         if (!state.user!.emailVerified) {
           Navigator.pushNamed(context, '/verify');
