@@ -32,14 +32,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FireChat',
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: currentUser == null
+      initialRoute: user == null
           ? '/login'
-          : currentUser.emailVerified || currentUser.phoneNumber != null
+          : user.emailVerified || user.phoneNumber != null || user.isAnonymous
               ? '/profile'
               : '/verify',
       routes: {
