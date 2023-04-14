@@ -1,3 +1,4 @@
+import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
@@ -15,6 +16,7 @@ void main() async {
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     PhoneAuthProvider(),
+    AppleProvider(),
   ]);
   runApp(const MyApp());
 }
