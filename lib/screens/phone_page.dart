@@ -1,7 +1,7 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_service.dart';
+import '../services/firebase_service.dart';
 
 class PhonePage extends StatelessWidget {
   const PhonePage({Key? key}) : super(key: key);
@@ -15,11 +15,12 @@ class PhonePage extends StatelessWidget {
         ));
       }),
       AuthStateChangeAction<SignedIn>((context, state) {
-        Navigator.pushReplacementNamed(context, '/');
+        FirebaseService.updateLastSignInTime();
+        Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
       }),
       AuthStateChangeAction<UserCreated>((context, state) {
         FirebaseService.writeUser();
-        Navigator.pushReplacementNamed(context, '/');
+        Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
       }),
     ]);
   }

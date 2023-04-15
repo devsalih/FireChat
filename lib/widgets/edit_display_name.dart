@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'firebase_service.dart';
+import '../services/firebase_service.dart';
 
 class EditDisplayName extends StatefulWidget {
   const EditDisplayName({Key? key}) : super(key: key);

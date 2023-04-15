@@ -1,7 +1,7 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_service.dart';
+import '../services/firebase_service.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,16 +15,16 @@ class LoginPage extends StatelessWidget {
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
           FirebaseService.updateLastSignInTime();
-          Navigator.pushReplacementNamed(context, '/');
+          Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
           FirebaseService.writeUser();
-          Navigator.pushNamed(context, '/');
+          Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
         }),
       ],
       footerBuilder: (context, _) => TextButton(
         onPressed: () => FirebaseService.signInAnonymously().then((_) {
-          Navigator.pushReplacementNamed(context, '/');
+          Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
         }),
         child: const Text('Sign in anonymously'),
       ),

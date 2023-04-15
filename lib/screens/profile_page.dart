@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'delete_account_button.dart';
-import 'edit_display_name.dart';
-import 'sign_out_button.dart';
+import '../widgets/delete_account_button.dart';
+import '../widgets/edit_display_name.dart';
+import '../widgets/sign_out_button.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -13,11 +13,10 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Profile')),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
-              SizedBox(height: 16.0),
               EditDisplayName(),
               Spacer(),
               SignOutButton(),

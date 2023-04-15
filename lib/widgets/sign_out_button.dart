@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'firebase_service.dart';
+import '../services/firebase_service.dart';
 
 class SignOutButton extends StatelessWidget {
   const SignOutButton({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class SignOutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () => FirebaseService.signOut().then((_) {
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushNamedAndRemoveUntil(context, '/login', (_) => false);
       }),
       child: Row(
         mainAxisSize: MainAxisSize.min,

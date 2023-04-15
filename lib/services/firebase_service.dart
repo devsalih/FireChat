@@ -5,14 +5,14 @@ class FirebaseService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final db = FirebaseFirestore.instance;
 
-  static User? get _currentUser => _auth.currentUser;
+  static User? get currentUser => _auth.currentUser;
 
-  static String? get _uid => _currentUser?.uid;
+  static String? get _uid => currentUser?.uid;
 
-  static String? get displayName => _currentUser?.displayName;
+  static String? get displayName => currentUser?.displayName;
 
   static void writeUser() {
-    final user = _currentUser;
+    final user = currentUser;
     if (user == null) return;
     db.collection('users').doc(user.uid).set({
       'email': user.email,
@@ -27,7 +27,7 @@ class FirebaseService {
   }
 
   static void updateLastSignInTime() {
-    final user = _currentUser;
+    final user = currentUser;
     if (user == null) return;
     db.collection('users').doc(user.uid).update({
       'lastSignInTime': DateTime.now(),
@@ -50,14 +50,14 @@ class FirebaseService {
   }
 
   static Future<void> deleteUser() async {
-    final user = _currentUser;
+    final user = currentUser;
     if (user == null) return;
     await user.delete();
     await db.collection('users').doc(user.uid).delete();
   }
 
   static Future<void> updateDisplayName(String name) async {
-    final user = _currentUser;
+    final user = currentUser;
     if (user == null) return;
     if (name == user.displayName || name.isEmpty) return;
     await db.collection('users').doc(user.uid).update({'displayName': name});

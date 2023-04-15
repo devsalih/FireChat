@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'firebase_service.dart';
+import '../services/firebase_service.dart';
 
 class DeleteAccountButton extends StatelessWidget {
   const DeleteAccountButton({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class DeleteAccountButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
       onPressed: () => FirebaseService.deleteUser().then((_) {
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushNamedAndRemoveUntil(context, '/login', (_) => false);
       }),
       child: const Text('Delete account'),
     );
