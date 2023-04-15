@@ -46,6 +46,7 @@ dependencies:
   flutter_facebook_auth: ^4.4.0+1
   firebase_ui_oauth_facebook: ^1.1.1
   cloud_firestore: ^4.5.1
+  flutter_bloc: ^8.1.2
 
 dev_dependencies:
   flutter_test:

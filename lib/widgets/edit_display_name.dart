@@ -10,8 +10,10 @@ class EditDisplayName extends StatefulWidget {
 }
 
 class _EditDisplayNameState extends State<EditDisplayName> {
-  String _name = FirebaseService.displayName ?? '';
-  final _controller = TextEditingController(text: FirebaseService.displayName);
+  String _name = FirebaseService.currentUser?.displayName ?? '';
+  final _controller = TextEditingController(
+    text: FirebaseService.currentUser?.displayName,
+  );
   final _node = FocusNode();
   bool _editing = false;
 

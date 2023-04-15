@@ -3,10 +3,14 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
 import 'package:firebase_ui_oauth_facebook/firebase_ui_oauth_facebook.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
+import 'package:firechat/bloc/firechat_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'firebase_options.dart';
+import 'screens/chat_page.dart';
+import 'screens/new_message_page.dart';
 import 'services/firebase_service.dart';
 import 'screens/home_page.dart';
 import 'screens/login_page.dart';
@@ -54,17 +58,22 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'FireChat',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: FirebaseService.currentUser == null ? '/login' : '/',
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/profile': (context) => const ProfilePage(),
-        '/phone': (context) => const PhonePage(),
-        '/': (context) => const HomePage(),
-      },
+    return BlocProvider<FireChatCubit>(
+      create: (context) => FireChatCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'FireChat',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        initialRoute: FirebaseService.currentUser == null ? '/login' : '/',
+        routes: {
+          '/login': (context) => const LoginPage(),
+          '/profile': (context) => const ProfilePage(),
+          '/phone': (context) => const PhonePage(),
+          '/': (context) => const HomePage(),
+          '/new_message': (context) => const NewMessagePage(),
+          '/chat': (context) => const ChatPage(),
+        },
+      ),
     );
   }
 }
