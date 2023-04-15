@@ -14,19 +14,17 @@ class LoginPage extends StatelessWidget {
           Navigator.pushNamed(context, '/phone');
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
-          if (!state.user!.emailVerified) {
-            Navigator.pushNamed(context, '/verify');
-          } else {
-            Navigator.pushReplacementNamed(context, '/profile');
-          }
+          FirebaseService.updateLastSignInTime();
+          Navigator.pushReplacementNamed(context, '/');
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
-          Navigator.pushNamed(context, '/verify');
-        })
+          FirebaseService.writeUser();
+          Navigator.pushNamed(context, '/');
+        }),
       ],
       footerBuilder: (context, _) => TextButton(
         onPressed: () => FirebaseService.signInAnonymously().then((_) {
-          Navigator.pushReplacementNamed(context, '/profile');
+          Navigator.pushReplacementNamed(context, '/');
         }),
         child: const Text('Sign in anonymously'),
       ),

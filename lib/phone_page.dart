@@ -1,6 +1,8 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'firebase_service.dart';
+
 class PhonePage extends StatelessWidget {
   const PhonePage({Key? key}) : super(key: key);
 
@@ -13,10 +15,11 @@ class PhonePage extends StatelessWidget {
         ));
       }),
       AuthStateChangeAction<SignedIn>((context, state) {
-        Navigator.pushReplacementNamed(context, '/profile');
+        Navigator.pushReplacementNamed(context, '/');
       }),
       AuthStateChangeAction<UserCreated>((context, state) {
-        Navigator.pushReplacementNamed(context, '/profile');
+        FirebaseService.writeUser();
+        Navigator.pushReplacementNamed(context, '/');
       }),
     ]);
   }
